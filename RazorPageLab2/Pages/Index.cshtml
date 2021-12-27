@@ -1,0 +1,75 @@
+﻿@page
+
+<style>
+    body {
+        background-color: #414951;
+    }
+
+    #paragraph {
+        padding-top: 8%;
+        padding-bottom: 2%;
+    }
+
+    #header {
+        padding-top: 4%;
+    }
+
+    #add {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    #remove {
+        padding-top: 5%;
+        padding-bottom: 5%
+    }
+</style>
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container text-md-center justify-content-center">
+
+    <div class="container">
+        <h3 class="text-light font-weight-light" id="paragraph">Search for a pokémon</h3>
+
+        <form method="post">
+            <input type"text" name="name" placeholder="Name" />
+            <button type="submit" class="btn btn-success" asp-page-handler="ReturnByName">Search</button>
+        </form>
+    </div>
+
+
+    <div class="container">
+        <h3 class="text-light font-weight-light" id="paragraph">Add a pokémon</h3>
+        <form method="post">
+            <input type"text" name="name" placeholder="Name" />
+            <input type"text" name="element" placeholder="Element" />
+            <input type"text" name="region" placeholder="Region" />
+            <input type"text" name="description" placeholder="Description" />
+            <button type="submit" class="btn btn-success" asp-page-handler="AddPokemon">Add</button>
+        </form>
+    </div>
+
+
+
+
+    @{
+        foreach (var pokemon in Model.Pokemons)
+        {
+            <h3 class="text-light" id="header">@pokemon.Name, @pokemon.Element</h3>
+            <p class="text-light font-weight-light">@pokemon.Description</p>
+
+
+        }
+    }
+
+
+
+
+
+</div>
